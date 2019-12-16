@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_tutorial/models/user.dart';
+import 'package:firebase_tutorial/services/database.dart';
 
 class AuthService {
   /*
@@ -72,6 +73,8 @@ class AuthService {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email,password: password);
       FirebaseUser user = result.user;
+       /* Tạo một tài liệu document mới*/
+      await DatabaseService(uid: user.uid).updateUserData('0', 'New Crew Member', 100);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print('Erro in Register ' + e.toString());
