@@ -3,23 +3,21 @@ import 'package:firebase_tutorial/shared/constants.dart';
 import 'package:firebase_tutorial/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
-  SignIn({this.toggleView});
+  Register({this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
-  // Khởi tạo AuthService để thừa kế sử dụng trong tác động nút nhấn SignIn
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   /* 
     GlobalKey<FormState> được dùng để check các biểu mẫu nhập liệu
     Ví dụ như kiểm tra tên email nhập đúng chưa....password... 
   */
   final _formKey = GlobalKey<FormState>();
-
   bool loading = false;
 
   //Text Field State
@@ -29,9 +27,6 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    /* Scaffold đóng vai trò như phần nền
-     để bố trí các thành phần khác theo phong các Material Design */
-
     return loading
         ? Loading()
         : Scaffold(
@@ -39,18 +34,19 @@ class _SignInState extends State<SignIn> {
             appBar: AppBar(
               backgroundColor: Colors.brown[400],
               elevation: 0.0, // Độ cao của appbard
-              title: Text('Login Brew Crew'),
+              title: Text('Register Brew Crew'),
               centerTitle: true,
               actions: <Widget>[
                 FlatButton.icon(
                   icon: Icon(Icons.person),
-                  label: Text('Register'),
+                  label: Text('Sign In'),
                   onPressed: () {
                     widget.toggleView();
                   },
                 )
               ],
             ),
+
             /*
         Container dùng để phân chia bố cục các widget 
         có Padding,broder - thêm, margin - kcach, 
@@ -68,20 +64,24 @@ class _SignInState extends State<SignIn> {
                     _formKey, // Liên kết formKey ở trên với key để check trạng thái RaiseButton ở dưới
                 child: Column(
                   children: <Widget>[
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                    SizedBox(height: 20.0),
                     TextFormField(
+                        /*
+                    Làm đẹp cho TextFormField
+                    hiển thị chũ nhạt ở dưới
+                  */
                         decoration:
                             textInputDecoration.copyWith(hintText: 'Email'),
+                        /* 
+                    Validator là dòng hiển thị ở dưới TextFormField
+                    ở đây khi val.emty thì sẽ hiện "Enter an email"
+                  */
                         validator: (val) =>
                             val.isEmpty ? 'Enter an email' : null,
                         onChanged: (val) {
                           setState(() => email = val);
                         }),
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                    SizedBox(height: 20.0),
                     TextFormField(
                         decoration:
                             textInputDecoration.copyWith(hintText: 'Password'),
@@ -92,12 +92,10 @@ class _SignInState extends State<SignIn> {
                         onChanged: (val) {
                           setState(() => password = val);
                         }),
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                    SizedBox(height: 20.0),
                     RaisedButton(
                         color: Colors.pink[400],
-                        child: Text('Sign In',
+                        child: Text('Register',
                             style: TextStyle(color: Colors.white)),
                         onPressed: () async {
                           /* 
@@ -108,13 +106,11 @@ class _SignInState extends State<SignIn> {
                     */
                           if (_formKey.currentState.validate()) {
                             setState(() => loading = true);
-                            // print('valid');
                             dynamic result = await _auth
-                                .signInWithEmailAndPassword(email, password);
+                                .registerWithEmailAndPassword(email, password);
                             if (result == null) {
                               setState(() {
-                                error =
-                                    'could not sign in with those cedentials';
+                                error = 'Please supply a valid email';
                                 loading = false;
                               });
                             }
@@ -128,28 +124,6 @@ class _SignInState extends State<SignIn> {
                   ],
                 ),
               ),
-
-              /* Khởi tạo một nút nhấn như Button trong Android */
-              // child: RaisedButton(
-              //   child: Text('Sign in Anonymus'),
-              //   onPressed: () async{
-              //     /* Sử dụng dynamic - biến động bởi vì nó có thể là null hoặc sẽ trả
-              //     về người dùng...
-              //     Khởi tạo biến động result lấy kết quả trả về
-              //     */
-              //     dynamic result = await _auth.signInAnon();
-              //     /*
-              //       Kiểm tra
-              //     */
-              //     if(result == null)
-              //     {
-              //       print('Error sign in');
-              //     }else{
-              //       print('Sign In');
-              //       print(result.uid);
-              //     }
-              //   }
-              // ),
             ));
   }
 }

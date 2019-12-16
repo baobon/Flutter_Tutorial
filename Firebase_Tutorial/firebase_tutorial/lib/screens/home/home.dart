@@ -1,3 +1,4 @@
+import 'package:firebase_tutorial/services/auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,10 +16,31 @@ import 'package:flutter/material.dart';
 */
 
 class Home extends StatelessWidget {
+
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Home'),            /* Trả về một Text = "Home" */
+    // return Container(
+      // child: Text('Home'),            /* Trả về một Text = "Home" */
+      return Scaffold(
+        backgroundColor: Colors.brown[50],
+        appBar: AppBar(
+          backgroundColor: Colors.brown[400],
+          title:  Text('Crew Bew'),
+          // centerTitle: true,
+          elevation: 0.0,
+          /*  Icon to the right App Bar*/
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.person_pin ),
+              label: Text('Logout'),
+              onPressed: () async {
+                await _auth.SignOut();
+              },
+            )
+          ],
+        ),
     );
   }
 }
