@@ -1,10 +1,8 @@
 # Brew Crew App- Flutter & Firebase Tutorial
 
 #### Feature
-* This app is built with the help of video tutorials. You can find them on 
-The Net Ninja Youtube channel.
-![Travel Blog Post Img1](https://github.com/baobon/AndroidApp_Travel_Blog/blob/master/Img/img1.jpg?raw=true)
-![Tralver Blog Post Img22](https://github.com/baobon/AndroidApp_Travel_Blog/blob/master/Img/img2.jpg?raw=true)
+* This app is built with the help of video tutorials. You can find them on "The Net Ninja" Youtube channel
+![Brew Crew](https://raw.githubusercontent.com/baobon/Flutter_Tutorial/master/Firebase_Tutorial/firebase_tutorial/image/background.png)
 
 #### Prequisites
 -   Firebase Authentication
