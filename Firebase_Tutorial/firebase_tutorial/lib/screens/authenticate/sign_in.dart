@@ -55,8 +55,7 @@ class _SignInState extends State<SignIn> {
         Container dùng để phân chia bố cục các widget 
         có Padding,broder - thêm, margin - kcach, 
       */
-            body: 
-            Container(
+            body: Container(
               /* Padding dùng hàm EdgeInsets.sysmetric để cách khoảng 
         Kiểu giống margin-top,botton,center này kia trong Android
         Nhưng ở đây phải gói gọn lại một EdgeInsets*/
@@ -64,7 +63,7 @@ class _SignInState extends State<SignIn> {
                   vertical: 20.0, // Chiều Dọc
                   horizontal: 50.0 // Chiều Ngang
                   ),
-                
+
               child: Form(
                 key:
                     _formKey, // Liên kết formKey ở trên với key để check trạng thái RaiseButton ở dưới
@@ -130,28 +129,11 @@ class _SignInState extends State<SignIn> {
                   ],
                 ),
               ),
-
-              /* Khởi tạo một nút nhấn như Button trong Android */
-              // child: RaisedButton(
-              //   child: Text('Sign in Anonymus'),
-              //   onPressed: () async{
-              //     /* Sử dụng dynamic - biến động bởi vì nó có thể là null hoặc sẽ trả
-              //     về người dùng...
-              //     Khởi tạo biến động result lấy kết quả trả về
-              //     */
-              //     dynamic result = await _auth.signInAnon();
-              //     /*
-              //       Kiểm tra
-              //     */
-              //     if(result == null)
-              //     {
-              //       print('Error sign in');
-              //     }else{
-              //       print('Sign In');
-              //       print(result.uid);
-              //     }
-              //   }
-              // ),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('assets/coffee_bg.png'),
+                fit: BoxFit.cover,
+              )),
             ));
   }
 }
