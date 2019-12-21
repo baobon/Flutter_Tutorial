@@ -1,4 +1,5 @@
 import 'package:firebase_tutorial/models/brew.dart';
+import 'package:firebase_tutorial/screens/home/setting_form.dart';
 import 'package:firebase_tutorial/services/auth.dart';
 import 'package:firebase_tutorial/services/database.dart';
 import 'package:flutter/material.dart';
@@ -23,19 +24,15 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    // child: Text('Home'),            /* Trả về một Text = "Home" */
-
-    /* 
-      
-    */
-    void _showSettingPanel(){
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 60.0),
-          child: Text('Bottom Sheet'),
-        );
-      });
+    void _showSettingPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: SettingForm(),
+            );
+          });
     }
 
     return StreamProvider<List<Brew>>.value(
@@ -63,9 +60,15 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: BrewList(),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/coffee_bg.png'),
+              fit: BoxFit.cover,
+            )
+          ),
+          child: BrewList(),),
       ),
     );
   }
 }
- 

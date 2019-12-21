@@ -55,7 +55,8 @@ class _SignInState extends State<SignIn> {
         Container dùng để phân chia bố cục các widget 
         có Padding,broder - thêm, margin - kcach, 
       */
-            body: Container(
+            body: 
+            Container(
               /* Padding dùng hàm EdgeInsets.sysmetric để cách khoảng 
         Kiểu giống margin-top,botton,center này kia trong Android
         Nhưng ở đây phải gói gọn lại một EdgeInsets*/
@@ -63,6 +64,7 @@ class _SignInState extends State<SignIn> {
                   vertical: 20.0, // Chiều Dọc
                   horizontal: 50.0 // Chiều Ngang
                   ),
+                
               child: Form(
                 key:
                     _formKey, // Liên kết formKey ở trên với key để check trạng thái RaiseButton ở dưới

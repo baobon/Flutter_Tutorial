@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_tutorial/models/brew.dart';
+import 'package:firebase_tutorial/models/user.dart';
 
 class DatabaseService{
 
@@ -31,11 +32,27 @@ class DatabaseService{
     }).toList();
   }
 
+    // Lay du lieu nguoi dung tu Snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot){
+    return UserData(
+      uid: uid,
+      name: snapshot.data['name'],
+      sugars:  snapshot.data['sugars'],
+      strength:  snapshot.data['strength']
+    );
+  }
+
 
   // Tạo một luồng Stream để theo dõi và lắng nghe cơ sở dữ liệu về
   Stream<List<Brew>> get brews {
     return brewCollection.snapshots().
        map(_breslistFromSnapshot);
   }
+
+  // Lấy dữ liệu người dùng
+  Stream<UserData> get userData{
+    return brewCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
 
 }
