@@ -1,0 +1,4 @@
+#Sat Mar 07 10:38:25 ICT 2020
+base.0=/home/baobon/Desktop/bloc_counter_sample/build/app/intermediates/transforms/dexMerger/debug/0
+renamed.0=classes.dex
+path.0=classes.dex

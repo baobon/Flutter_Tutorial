@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/baobon/Desktop/bloc_counter_sample/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rGB/values-en-rGB.xml",
+            "map": [
+                {
+                    "source": "/home/baobon/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/3c9243cac9ff38392916a9bfd57a2627/res/values-en-rGB/values-en-rGB.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}
